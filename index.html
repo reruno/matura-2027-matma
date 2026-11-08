@@ -117,6 +117,13 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
 .needs a { color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; background: var(--bg); }
 .needs a:hover { border-color: var(--accent); }
 .basics section:target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+#wz-toc a { color: var(--accent); text-decoration: none; }
+#wz-toc a:hover { text-decoration: underline; }
+#wz-toc td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.wz-page { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 0 0 18px; scroll-margin-top: 80px; }
+.wz-page .label { padding: 8px 16px; color: var(--muted); font-size: .88rem; border-bottom: 1px solid var(--line); }
+.wz-link { margin: 10px 0 0; font-size: .92rem; }
+.wz-link a { color: var(--accent); }
 .back { position: fixed; z-index: 6; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); box-shadow: 0 4px 16px rgba(0, 0, 0, .25); }
 @media (max-width: 520px) {
   body { font-size: 16px; }
@@ -133,6 +140,7 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
     <div class="brand">Matura 2027 · matematyka <small>poziom podstawowy</small></div>
     <nav id="nav">
       <a href="#start">Start i podstawy</a>
+      <a href="#wzory">Karta wzorów</a>
       <a href="#rok-2026">2026</a>
       <a href="#rok-2025">2025</a>
       <a href="#rok-2024">2024</a>
@@ -417,6 +425,20 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
   </div>
 </div>
 
+<div id="view-wzory" hidden>
+  <h1>Karta wzorów</h1>
+  <p class="lead">To jest broszura <b>„Wybrane wzory matematyczne na egzamin maturalny z matematyki”</b> (CKE). Każdy zdający dostaje ją na egzaminie razem z arkuszem – ta sama broszura na poziomie podstawowym i rozszerzonym.</p>
+  <ul class="steps">
+    <li>Nie ucz się tych wzorów na pamięć. Naucz się, <b>gdzie są</b> – na egzaminie masz je przed sobą.</li>
+    <li>Przy rozwiązywaniu zadań z tej strony miej broszurę otwartą obok i szukaj w niej wzorów, tak jak na prawdziwym egzaminie.</li>
+    <li>Działy oznaczone <span class="tag X">tylko rozszerzony</span> możesz pominąć.</li>
+  </ul>
+  <p class="ex">Oryginalny PDF: <a href="https://cke.gov.pl/images/_EGZAMIN_MATURALNY_OD_2023/Informatory/wybrane_wzory_matematyczne_EM2023.pdf" style="color: var(--accent);">cke.gov.pl – wybrane wzory matematyczne</a>.</p>
+  <h2>Spis treści</h2>
+  <div class="tbl"><table id="wz-toc"></table></div>
+  <div id="wz-pages"></div>
+</div>
+
 <div id="view-year" hidden>
   <h1 id="year-title"></h1>
   <p class="lead" id="year-lead"></p>
@@ -524,17 +546,67 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
     applyFilter();
   }
 
+  // Formula booklet: sections (title, first page, extended-level only?) and pages 4–34.
+  var WZ_TOC = [
+    ["1. Wartość bezwzględna liczby", 4], ["2. Potęgi i pierwiastki", 4], ["3. Logarytmy", 5],
+    ["4. Silnia. Współczynnik dwumianowy", 6], ["5. Wzór dwumianowy Newtona", 7, true],
+    ["6. Wzory skróconego mnożenia", 7], ["7. Funkcja kwadratowa", 7], ["8. Ciągi (i procent składany)", 9],
+    ["9. Trygonometria", 11], ["10. Planimetria", 15], ["11. Geometria analityczna", 22],
+    ["12. Stereometria", 26], ["13. Kombinatoryka", 28], ["14. Rachunek prawdopodobieństwa", 29],
+    ["15. Parametry danych statystycznych", 31], ["16. Pochodna funkcji", 32, true],
+    ["17. Tablica wartości funkcji trygonometrycznych", 34]
+  ];
+  var WZ_FOR = {
+    "p-abs": 4, "p-potegi": 4, "p-log": 5, "p-wzory": 7, "p-proc": 10, "p-kw": 7, "p-ciagi": 9,
+    "p-tryg": 11, "p-plan": 15, "p-anal": 22, "p-stereo": 26, "p-komb": 28, "p-stat": 31
+  };
+  var wzBuilt = false;
+  function buildWzory() {
+    if (wzBuilt) return;
+    wzBuilt = true;
+    var toc = document.getElementById("wz-toc");
+    toc.innerHTML = "<tr><th>Dział</th><th>Strona</th></tr>" + WZ_TOC.map(function (r) {
+      return "<tr><td><a href=\"#wz-" + r[1] + "\">" + r[0] + "</a>" + (r[2] ? ' <span class="tag X">tylko rozszerzony</span>' : "") +
+        "</td><td>" + r[1] + "</td></tr>";
+    }).join("");
+    var box = document.getElementById("wz-pages");
+    for (var n = 4; n <= 34; n++) {
+      var d = document.createElement("div");
+      d.className = "wz-page";
+      d.id = "wz-" + n;
+      d.innerHTML = '<div class="label">Strona ' + n + ' z 34</div><div class="sheet"><img loading="lazy" alt="Wybrane wzory matematyczne, strona ' + n + '" src="wzory/str-' + n + '.png" width="1075" height="1521"></div>';
+      box.appendChild(d);
+    }
+  }
+  Object.keys(WZ_FOR).forEach(function (id) {
+    var s = document.getElementById(id);
+    if (!s) return;
+    var p = document.createElement("p");
+    p.className = "wz-link";
+    p.innerHTML = '<a href="#wz-' + WZ_FOR[id] + '">W karcie wzorów: strona ' + WZ_FOR[id] + ' →</a>';
+    s.appendChild(p);
+  });
+
   function route() {
     var h = location.hash.replace("#", "");
     var m = /^rok-(\d{4})$/.exec(h);
     var isYear = !!m && !!DATES[m[1]];
-    document.getElementById("view-start").hidden = isYear;
+    var isWz = h === "wzory" || /^wz-\d+$/.test(h);
+    document.getElementById("view-start").hidden = isYear || isWz;
     document.getElementById("view-year").hidden = !isYear;
+    document.getElementById("view-wzory").hidden = !isWz;
+    if (isWz) {
+      buildWzory();
+      document.getElementById("back").hidden = true;
+      var page = document.getElementById(h);
+      if (page && h !== "wzory") page.scrollIntoView({ block: "start" }); else window.scrollTo(0, 0);
+    }
     document.querySelectorAll("#nav a").forEach(function (a) {
       var target = a.getAttribute("href").slice(1);
-      var current = isYear ? target === h : target === "start";
+      var current = isYear ? target === h : isWz ? target === "wzory" : target === "start";
       if (current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
+    if (isWz) return;
     var back = document.getElementById("back");
     if (isYear) {
       back.hidden = true;
