@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important} body{margin:0} img{max-width:100%}</style>
+<title>Matura 2027 z matmy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow reading column; sticky tab bar; tasks are "paper sheets" with a tier tag. */
+:root {
+  --bg: #f6f7f5;
+  --surface: #ffffff;
+  --fg: #1d2421;
+  --muted: #5d6863;
+  --line: #dde2df;
+  --accent: #23614f;
+  --a: #1f7a4d;  --a-bg: #e3f3ea;
+  --b: #2459a6;  --b-bg: #e4ecf8;
+  --c: #9a6200;  --c-bg: #fbefd9;
+  --x: #6b6f73;  --x-bg: #eceeef;
+  --font: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131816; --surface: #1b2220; --fg: #e6ebe8; --muted: #9aa6a0; --line: #2d3733;
+    --accent: #6cc3a5;
+    --a: #6fd39e; --a-bg: #173327; --b: #8db4f0; --b-bg: #1a2840;
+    --c: #f0b75a; --c-bg: #3a2c12; --x: #a5abaf; --x-bg: #262b2e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131816; --surface: #1b2220; --fg: #e6ebe8; --muted: #9aa6a0; --line: #2d3733;
+  --accent: #6cc3a5;
+  --a: #6fd39e; --a-bg: #173327; --b: #8db4f0; --b-bg: #1a2840;
+  --c: #f0b75a; --c-bg: #3a2c12; --x: #a5abaf; --x-bg: #262b2e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font: 17px/1.55 var(--font); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding-block: 10px; }
+.brand { font-weight: 700; font-size: 1rem; margin-right: auto; }
+.brand small { color: var(--muted); font-weight: 400; }
+nav { display: flex; gap: 4px; flex-wrap: wrap; }
+nav a { color: var(--fg); text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: .95rem; }
+nav a:hover { background: var(--bg); }
+nav a[aria-current="page"] { background: var(--accent); color: var(--surface); font-weight: 700; }
+
+main { padding-block: 28px 80px; }
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 8px; text-wrap: balance; }
+h2 { font-size: 1.35rem; margin: 44px 0 12px; text-wrap: balance; }
+h3 { font-size: 1.08rem; margin: 26px 0 8px; }
+p, li { max-width: 68ch; }
+.lead { color: var(--muted); margin: 0 0 8px; }
+code, .m { font-family: var(--mono); font-size: .92em; }
+.m { background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+
+.tiers { display: grid; gap: 10px; margin: 16px 0; }
+.tier-row { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.tier-row p { margin: 2px 0 0; color: var(--muted); }
+.tag { display: inline-grid; place-items: center; min-width: 32px; height: 28px; padding: 0 8px; border-radius: 6px; font-weight: 700; font-size: .9rem; }
+.tag.A { color: var(--a); background: var(--a-bg); }
+.tag.B { color: var(--b); background: var(--b-bg); }
+.tag.C { color: var(--c); background: var(--c-bg); }
+.tag.X { color: var(--x); background: var(--x-bg); }
+
+.steps { padding-left: 1.3em; }
+.steps li { margin: 6px 0; }
+
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+.tbl { overflow-x: auto; margin: 8px 0 4px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 700; font-size: .85rem; }
+
+.basics section { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 4px 18px 14px; margin: 12px 0; }
+.basics section h3 { margin-top: 14px; }
+.basics ul { padding-left: 1.2em; margin: 6px 0; }
+.basics li { margin: 4px 0; }
+.ex { color: var(--muted); font-size: .95rem; }
+.toc { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
+.toc a { display: inline-block; font-size: .9rem; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); text-decoration: none; background: var(--surface); }
+.toc a:hover { border-color: var(--accent); }
+
+.bar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin: 14px 0 22px; }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.filters button { font: inherit; font-size: .92rem; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); padding: 5px 12px; border-radius: 999px; }
+.filters button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--surface); font-weight: 700; }
+.progress { color: var(--muted); font-size: .92rem; font-variant-numeric: tabular-nums; }
+
+.task { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; margin: 0 0 18px; overflow: hidden; }
+.task.done { border-color: var(--a); }
+.task-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.task-head .nr { font-weight: 700; }
+.task-head .pts { color: var(--muted); font-size: .92rem; font-variant-numeric: tabular-nums; }
+.task-head .typ { color: var(--muted); font-size: .92rem; flex-basis: 100%; }
+.sheet { background: #fff; padding: 12px; }
+.sheet img { display: block; width: 100%; height: auto; }
+.task-foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); }
+.btn { font: inherit; font-size: .95rem; cursor: pointer; border-radius: 7px; padding: 7px 14px; border: 1px solid var(--accent); background: var(--accent); color: var(--surface); font-weight: 700; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.check { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; cursor: pointer; color: var(--muted); font-size: .95rem; }
+.check input { width: 18px; height: 18px; accent-color: var(--a); }
+.solution { border-top: 1px dashed var(--line); }
+.solution .label { padding: 10px 16px 0; color: var(--muted); font-size: .88rem; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.empty { color: var(--muted); }
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  h1 { font-size: 1.55rem; }
+  .sheet { padding: 4px; }
+  .check { margin-left: 0; }
+}
+</style>
+
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">Matura 2027 · matematyka <small>poziom podstawowy</small></div>
+    <nav id="nav">
+      <a href="#start">Start i podstawy</a>
+      <a href="#rok-2026">2026</a>
+      <a href="#rok-2025">2025</a>
+      <a href="#rok-2024">2024</a>
+      <a href="#rok-2023">2023</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<div id="view-start">
+  <h1>Jak się uczyć z tej strony</h1>
+  <p class="lead">Tu są wszystkie zadania z prawdziwych matur CKE (maj 2023–2026), każde z oficjalnym rozwiązaniem i oznaczeniem, czy warto się go uczyć.</p>
+  <ol class="steps">
+    <li>Najpierw przeczytaj <a href="#podstawy">podstawy</a> niżej. To krótkie przypomnienie zasad, bez których nie ruszysz zadań.</li>
+    <li>Wybierz rok (najlepiej zacznij od <a href="#rok-2026">2026</a> i <a href="#rok-2025">2025</a> – są najbardziej podobne do Twojej matury). Ustaw filtr na <span class="tag A">A</span>.</li>
+    <li>Rozwiąż zadanie na kartce. Dopiero potem kliknij <b>Pokaż rozwiązanie</b> i porównaj.</li>
+    <li>Jeśli wyszło dobrze – zaznacz <b>Umiem</b>. Jeśli nie – wróć do tego typu za kilka dni.</li>
+  </ol>
+
+  <h2>Poziomy zadań</h2>
+  <p>Każde zadanie ma znaczek. Mówi, jak bardzo opłaca się go uczyć. Wyliczone na podstawie tego, co CKE dawało co roku.</p>
+  <div class="tiers">
+    <div class="tier-row"><span class="tag A">A</span><div><b>Zawsze jest i jest krótkie.</b> Zadania zamknięte za 1 pkt: jedna reguła albo jeden wzór. Same zadania A to ok. <b>45% arkusza</b> – więcej niż próg zdania (30%). Ucz się ich najpierw.</div></div>
+    <div class="tier-row"><span class="tag B">B</span><div><b>Zawsze jest i ma stały przepis.</b> Zadania otwarte za 1–2 pkt, które co roku wyglądają tak samo: dowód podzielności, układ równań z treści, ciąg arytmetyczny, prawdopodobieństwo. A + B to ok. <b>60% arkusza</b>.</div></div>
+    <div class="tier-row"><span class="tag C">C</span><div><b>Często jest, trochę więcej myślenia.</b> Dłuższe zadania (funkcja kwadratowa, stereometria, nierówność kwadratowa) albo tematy, które bywają nie co roku. Rób je po opanowaniu A i B. Na trudnych otwartych celuj chociaż w 1. punkt.</div></div>
+    <div class="tier-row"><span class="tag X">Pomiń</span><div><b>Dużo pracy za mało punktów.</b> Otwarta optymalizacja, dowody geometryczne, twierdzenie cosinusów. Na egzaminie zapisz tylko pierwszy krok i idź dalej.</div></div>
+  </div>
+
+  <h2>Na egzaminie: 3 przejścia</h2>
+  <ol class="steps">
+    <li><b>~60 min – wszystkie zadania za (0–1).</b> Rozwiąż, co rozpoznajesz. Resztę zaznacz „na strzała” od razu i postaw kropkę na marginesie. Nigdy nie zostawiaj pustego zadania zamkniętego.</li>
+    <li><b>~60 min – zadania B.</b> Dowód, układ równań, ciąg, prawdopodobieństwo. Pisz cały przepis.</li>
+    <li><b>Reszta czasu – C.</b> Nierówność kwadratowa, potem pierwsze kroki w dłuższych. Na koniec wróć do kropek.</li>
+  </ol>
+  <p class="ex">Kolejność zadań w arkuszu jest co roku taka sama: najpierw liczby (potęgi, logarytmy), potem równania, funkcje, ciągi, trygonometria, geometria, bryły, a na końcu kombinatoryka, prawdopodobieństwo i statystyka.</p>
+
+  <h2 id="podstawy">Podstawy do odświeżenia</h2>
+  <p class="lead">Większość wzorów jest w broszurze <b>„Wybrane wzory matematyczne”</b>, którą dostaniesz na egzaminie. Nie ucz się ich na pamięć – naucz się, gdzie są. Tu masz zasady, które trzeba umieć „z ręki”.</p>
+  <ul class="toc">
+    <li><a href="#p-liczby">Ułamki i minusy</a></li>
+    <li><a href="#p-potegi">Potęgi i pierwiastki</a></li>
+    <li><a href="#p-log">Logarytmy</a></li>
+    <li><a href="#p-wzory">Wzory skróconego mnożenia</a></li>
+    <li><a href="#p-proc">Procenty</a></li>
+    <li><a href="#p-rown">Równania i nierówności</a></li>
+    <li><a href="#p-wykres">Czytanie wykresu</a></li>
+    <li><a href="#p-lin">Funkcja liniowa</a></li>
+    <li><a href="#p-kw">Funkcja kwadratowa</a></li>
+    <li><a href="#p-ciagi">Ciągi</a></li>
+    <li><a href="#p-tryg">Trygonometria</a></li>
+    <li><a href="#p-plan">Planimetria</a></li>
+    <li><a href="#p-anal">Układ współrzędnych</a></li>
+    <li><a href="#p-stereo">Bryły</a></li>
+    <li><a href="#p-komb">Kombinatoryka i prawdopodobieństwo</a></li>
+    <li><a href="#p-stat">Statystyka</a></li>
+  </ul>
+
+  <div class="basics">
+    <section id="p-liczby">
+      <h3>Ułamki, liczby ujemne, kolejność działań</h3>
+      <ul>
+        <li>Minus razy minus daje plus: <span class="m">(−3)·(−4) = 12</span>. Minus razy plus daje minus: <span class="m">(−3)·4 = −12</span>.</li>
+        <li>Odejmowanie liczby ujemnej to dodawanie: <span class="m">−3 − (−5) = −3 + 5 = 2</span>.</li>
+        <li>Dodawanie ułamków – wspólny mianownik: <span class="m">1/2 + 1/3 = 3/6 + 2/6 = 5/6</span>.</li>
+        <li>Mnożenie ułamków – licznik razy licznik, mianownik razy mianownik: <span class="m">2/3 · 3/4 = 6/12 = 1/2</span>.</li>
+        <li>Dzielenie przez ułamek – mnożysz przez odwrotność: <span class="m">2/3 : 4/5 = 2/3 · 5/4 = 10/12 = 5/6</span>.</li>
+        <li>Kolejność: nawiasy → potęgi i pierwiastki → mnożenie i dzielenie → dodawanie i odejmowanie.</li>
+        <li>Minus przed nawiasem zmienia wszystkie znaki w środku: <span class="m">−2(x − 3) = −2x + 6</span>.</li>
+      </ul>
+    </section>
+
+    <section id="p-potegi">
+      <h3>Potęgi i pierwiastki</h3>
+      <div class="tbl"><table>
+        <tr><th>Reguła</th><th>Przykład</th></tr>
+        <tr><td><span class="m">aⁿ · aᵐ = aⁿ⁺ᵐ</span></td><td><span class="m">2³ · 2⁴ = 2⁷</span></td></tr>
+        <tr><td><span class="m">aⁿ : aᵐ = aⁿ⁻ᵐ</span></td><td><span class="m">5⁶ : 5² = 5⁴</span></td></tr>
+        <tr><td><span class="m">(aⁿ)ᵐ = aⁿ·ᵐ</span></td><td><span class="m">(3²)⁴ = 3⁸</span></td></tr>
+        <tr><td><span class="m">a⁰ = 1</span>, <span class="m">a⁻ⁿ = 1/aⁿ</span></td><td><span class="m">2⁻³ = 1/8</span></td></tr>
+        <tr><td><span class="m">a^(1/2) = √a</span>, <span class="m">a^(1/3) = ∛a</span></td><td><span class="m">8^(1/3) = 2</span></td></tr>
+        <tr><td><span class="m">√(a·b) = √a · √b</span></td><td><span class="m">√32 = √16 · √2 = 4√2</span></td></tr>
+      </table></div>
+      <p class="ex">Sposób na prawie każde zadanie z potęgami: zamień wszystkie liczby na potęgi tej samej podstawy (4 = 2², 8 = 2³, 16 = 2⁴, 9 = 3², 27 = 3³, 25 = 5²) i dopiero wtedy licz wykładniki.</p>
+    </section>
+
+    <section id="p-log">
+      <h3>Logarytmy</h3>
+      <ul>
+        <li>Definicja: <span class="m">logₐ b = c</span> znaczy <span class="m">aᶜ = b</span>. Pytasz: „do jakiej potęgi podnieść a, żeby wyszło b?” <span class="m">log₂ 8 = 3</span>, bo 2³ = 8.</li>
+        <li><span class="m">logₐ a = 1</span>, <span class="m">logₐ 1 = 0</span>.</li>
+        <li>Suma logarytmów (ta sama podstawa) = logarytm iloczynu: <span class="m">log₉ 27 + log₉ 3 = log₉ 81 = 2</span>.</li>
+        <li>Różnica = logarytm ilorazu: <span class="m">log₈ 4 − log₈ 32 = log₈ (1/8) = −1</span>.</li>
+        <li>Liczba przed logarytmem wchodzi do wykładnika: <span class="m">2 log₃ 2 = log₃ 4</span>.</li>
+      </ul>
+    </section>
+
+    <section id="p-wzory">
+      <h3>Wzory skróconego mnożenia</h3>
+      <ul>
+        <li><span class="m">(a + b)² = a² + 2ab + b²</span></li>
+        <li><span class="m">(a − b)² = a² − 2ab + b²</span></li>
+        <li><span class="m">a² − b² = (a − b)(a + b)</span></li>
+      </ul>
+      <p class="ex">Typowe zadanie: <span class="m">(2a + b)² − (2a − b)²</span>. Rozpisz oba nawiasy, odejmij (pamiętaj o minusie przed drugim nawiasem): wynik <span class="m">8ab</span>.</p>
+    </section>
+
+    <section id="p-proc">
+      <h3>Procenty</h3>
+      <ul>
+        <li><span class="m">p% z x = (p/100) · x</span>. 15% z 200 = 0,15 · 200 = 30.</li>
+        <li>Podwyżka o p%: <span class="m">x · (1 + p/100)</span>. Obniżka o p%: <span class="m">x · (1 − p/100)</span>.</li>
+        <li>Procent składany (lokata, n lat): <span class="m">K · (1 + p/100)ⁿ</span>. 10 000 zł na 6% przez 2 lata = 10 000 · 1,06².</li>
+      </ul>
+    </section>
+
+    <section id="p-rown">
+      <h3>Równania i nierówności</h3>
+      <ul>
+        <li>Przenosząc wyraz na drugą stronę, zmieniasz jego znak: <span class="m">3x − 7 = 2x + 5 → x = 12</span>.</li>
+        <li>W nierówności: mnożąc lub dzieląc przez liczbę <b>ujemną</b>, odwracasz znak: <span class="m">−2x &lt; 6 → x &gt; −3</span>.</li>
+        <li>Ułamki w równaniu – pomnóż obie strony przez wspólny mianownik.</li>
+        <li><b>Równanie iloczynowe</b>: iloczyn = 0, gdy któryś czynnik = 0. <span class="m">2x(x + 3)(x² + 25) = 0 → x = 0 lub x = −3</span> (bo x² + 25 nigdy nie jest zerem).</li>
+        <li><b>Równanie z x w mianowniku</b>: najpierw wypisz liczby, dla których mianownik = 0 – one nie mogą być rozwiązaniem.</li>
+        <li><b>Układ równań z treści</b>: nazwij dwie niewiadome (x, y), napisz dwa równania z dwóch zdań treści, wylicz y z jednego i wstaw do drugiego.</li>
+      </ul>
+    </section>
+
+    <section id="p-wykres">
+      <h3>Czytanie wykresu funkcji</h3>
+      <ul>
+        <li><b>Dziedzina</b> – wszystkie x, nad którymi jest wykres (czytasz od lewej do prawej).</li>
+        <li><b>Zbiór wartości</b> – wszystkie y, które wykres osiąga (czytasz od dołu do góry).</li>
+        <li>Kółko <b>puste</b> – punkt nie należy (nawias okrągły). Kółko <b>pełne</b> – należy (nawias kwadratowy).</li>
+        <li><b>Rośnie / maleje</b> – patrzysz od lewej do prawej: idzie w górę = rośnie.</li>
+        <li><b>Miejsce zerowe</b> – x, w którym wykres przecina oś poziomą (Ox).</li>
+        <li><span class="m">f(x) ≥ 0</span> – te x, gdzie wykres jest nad osią Ox lub na niej.</li>
+        <li><span class="m">f(x + 3)</span> – wykres przesunięty o 3 w <b>lewo</b>. <span class="m">f(x) − 3</span> – o 3 w <b>dół</b>. <span class="m">f(−x)</span> – odbicie względem osi Oy.</li>
+      </ul>
+    </section>
+
+    <section id="p-lin">
+      <h3>Funkcja liniowa <span class="m">y = ax + b</span></h3>
+      <ul>
+        <li><span class="m">a &gt; 0</span> rośnie, <span class="m">a &lt; 0</span> maleje, <span class="m">a = 0</span> stała.</li>
+        <li><span class="m">b</span> – gdzie wykres przecina oś Oy: punkt <span class="m">(0, b)</span>.</li>
+        <li>Miejsce zerowe: rozwiąż <span class="m">ax + b = 0</span>.</li>
+        <li>Proste <b>równoległe</b> – takie samo a. Proste <b>prostopadłe</b> – <span class="m">a₁ · a₂ = −1</span> (np. 2 i −1/2).</li>
+        <li>Prosta przez punkt: wstaw x i y punktu do <span class="m">y = ax + b</span> i wylicz b.</li>
+      </ul>
+    </section>
+
+    <section id="p-kw">
+      <h3>Funkcja kwadratowa <span class="m">f(x) = ax² + bx + c</span></h3>
+      <ul>
+        <li><span class="m">Δ = b² − 4ac</span>. Δ &gt; 0: dwa miejsca zerowe <span class="m">x = (−b ± √Δ) / 2a</span>. Δ = 0: jedno <span class="m">x = −b/2a</span>. Δ &lt; 0: brak.</li>
+        <li><span class="m">a &gt; 0</span> – ramiona w górę, <span class="m">a &lt; 0</span> – w dół.</li>
+        <li>Wierzchołek <span class="m">W = (p, q)</span>: <span class="m">p = −b/2a</span>, <span class="m">q = f(p)</span>. Oś symetrii: <span class="m">x = p</span>. Gdy znasz miejsca zerowe: p to ich średnia.</li>
+        <li>Postać kanoniczna: <span class="m">f(x) = a(x − p)² + q</span>. Iloczynowa: <span class="m">f(x) = a(x − x₁)(x − x₂)</span>.</li>
+        <li>Wzór z wykresu: odczytaj wierzchołek (p, q), wstaw do postaci kanonicznej, a potem wstaw jeszcze jeden punkt z wykresu i wylicz a.</li>
+      </ul>
+      <p><b>Przepis na nierówność kwadratową</b> (np. <span class="m">3x² + 4x ≥ 6x + 8</span>):</p>
+      <ol class="steps">
+        <li>Wszystko na lewą stronę: <span class="m">3x² − 2x − 8 ≥ 0</span>.</li>
+        <li>Policz Δ i miejsca zerowe: Δ = 4 + 96 = 100, x₁ = −4/3, x₂ = 2.</li>
+        <li>Naszkicuj parabolę (ramiona w górę, bo a = 3 &gt; 0) przez te punkty.</li>
+        <li>„≥ 0” = gdzie parabola jest nad osią lub na niej: <span class="m">x ∈ (−∞, −4/3] ∪ [2, +∞)</span>.</li>
+      </ol>
+    </section>
+
+    <section id="p-ciagi">
+      <h3>Ciągi</h3>
+      <ul>
+        <li><b>Arytmetyczny</b> – co krok dodajesz r. <span class="m">aₙ = a₁ + (n − 1)r</span>, suma <span class="m">Sₙ = (a₁ + aₙ)/2 · n</span>.</li>
+        <li><b>Geometryczny</b> – co krok mnożysz przez q. <span class="m">aₙ = a₁ · qⁿ⁻¹</span>.</li>
+        <li>Trzy kolejne wyrazy (a, b, c): arytmetyczny gdy <span class="m">2b = a + c</span>, geometryczny gdy <span class="m">b² = a · c</span>.</li>
+        <li>Wyraz ze wzoru: <span class="m">aₙ = 2ⁿ · (n + 1)</span>, więc <span class="m">a₄ = 2⁴ · 5 = 80</span> – po prostu wstaw n.</li>
+      </ul>
+    </section>
+
+    <section id="p-tryg">
+      <h3>Trygonometria</h3>
+      <ul>
+        <li>W trójkącie prostokątnym, dla kąta α: <span class="m">sin α = przeciwległa / przeciwprostokątna</span>, <span class="m">cos α = przyległa / przeciwprostokątna</span>, <span class="m">tg α = przeciwległa / przyległa</span>.</li>
+        <li><span class="m">sin²α + cos²α = 1</span> oraz <span class="m">tg α = sin α / cos α</span>.</li>
+        <li>Kąt w układzie współrzędnych przez punkt <span class="m">P = (x, y)</span>: <span class="m">r = √(x² + y²)</span>, <span class="m">sin α = y/r</span>, <span class="m">cos α = x/r</span>, <span class="m">tg α = y/x</span>.</li>
+      </ul>
+      <div class="tbl"><table>
+        <tr><th></th><th>30°</th><th>45°</th><th>60°</th></tr>
+        <tr><td>sin</td><td>1/2</td><td>√2/2</td><td>√3/2</td></tr>
+        <tr><td>cos</td><td>√3/2</td><td>√2/2</td><td>1/2</td></tr>
+        <tr><td>tg</td><td>√3/3</td><td>1</td><td>√3</td></tr>
+      </table></div>
+    </section>
+
+    <section id="p-plan">
+      <h3>Planimetria</h3>
+      <ul>
+        <li>Suma kątów w trójkącie: 180°. Twierdzenie Pitagorasa: <span class="m">a² + b² = c²</span> (c – najdłuższy bok).</li>
+        <li><b>Kąt środkowy = 2 × kąt wpisany</b> oparty na tym samym łuku. Kąt wpisany oparty na średnicy = 90°.</li>
+        <li>Trójkąt z dwoma bokami będącymi promieniami jest równoramienny – kąty przy podstawie są równe.</li>
+        <li>Pole trójkąta: <span class="m">½ · a · h</span> albo <span class="m">½ · a · b · sin γ</span>.</li>
+        <li>Figury podobne w skali k: długości × k, pola × k², objętości × k³.</li>
+      </ul>
+    </section>
+
+    <section id="p-anal">
+      <h3>Punkty, odcinki, okrąg w układzie współrzędnych</h3>
+      <ul>
+        <li>Długość odcinka: <span class="m">|AB| = √((x₂ − x₁)² + (y₂ − y₁)²)</span>.</li>
+        <li>Środek odcinka: <span class="m">S = ((x₁ + x₂)/2, (y₁ + y₂)/2)</span>. Przekątne równoległoboku i kwadratu dzielą się na pół.</li>
+        <li>Okrąg: <span class="m">(x − a)² + (y − b)² = r²</span>, środek <span class="m">(a, b)</span>, promień r. Uwaga na znaki: <span class="m">(x + 2)²</span> oznacza a = −2.</li>
+      </ul>
+    </section>
+
+    <section id="p-stereo">
+      <h3>Bryły</h3>
+      <ul>
+        <li>Graniastosłup, walec: <span class="m">V = Pp · H</span>. Ostrosłup, stożek: <span class="m">V = ⅓ · Pp · H</span> (Pp – pole podstawy).</li>
+        <li>Przekątna kwadratu <span class="m">a√2</span>, przekątna sześcianu <span class="m">a√3</span>.</li>
+        <li>Kąt nachylenia: znajdź w bryle trójkąt prostokątny (wysokość + odcinek w podstawie + krawędź lub wysokość ściany) i użyj sin, cos albo tg.</li>
+        <li>Pierwszy punkt w zadaniu otwartym zwykle jest za policzenie jednej długości z takiego trójkąta.</li>
+      </ul>
+    </section>
+
+    <section id="p-komb">
+      <h3>Kombinatoryka i prawdopodobieństwo</h3>
+      <ul>
+        <li><b>Reguła mnożenia</b>: ile możliwości na pierwszym miejscu × ile na drugim × … Liczba pięciocyfrowa z cyfr 0, 5, 7: <span class="m">2 · 3 · 3 · 3 · 3</span> (pierwsza cyfra nie może być 0).</li>
+        <li>Ustawienie n różnych rzeczy w kolejce: <span class="m">n! = 1 · 2 · … · n</span>. Np. 4 cyfry bez powtórzeń: 4! = 24.</li>
+        <li><b>Prawdopodobieństwo</b>: <span class="m">P(A) = |A| / |Ω|</span> = dobre wyniki / wszystkie wyniki.</li>
+        <li>Dwa losowania ze zwracaniem z n liczb: <span class="m">|Ω| = n · n</span>. Dwa rzuty kostką: 36. Narysuj tabelkę i zaznacz dobre pola.</li>
+      </ul>
+    </section>
+
+    <section id="p-stat">
+      <h3>Statystyka</h3>
+      <ul>
+        <li><b>Średnia</b> = suma wszystkich wartości / ile ich jest. Jeśli średnia 3 liczb to 9, ich suma to 27.</li>
+        <li><b>Mediana</b> – ustaw liczby rosnąco i weź środkową. Przy parzystej liczbie – średnia dwóch środkowych.</li>
+        <li>Z diagramu: ocena × liczba uczniów z tą oceną, zsumuj, podziel przez liczbę wszystkich uczniów.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<div id="view-year" hidden>
+  <h1 id="year-title"></h1>
+  <p class="lead" id="year-lead"></p>
+  <div class="bar">
+    <div class="filters" id="filters" role="group" aria-label="Filtr poziomu">
+      <button type="button" data-f="all" aria-pressed="true">Wszystkie</button>
+      <button type="button" data-f="A" aria-pressed="false">A</button>
+      <button type="button" data-f="B" aria-pressed="false">B</button>
+      <button type="button" data-f="C" aria-pressed="false">C</button>
+      <button type="button" data-f="X" aria-pressed="false">Pomiń</button>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+  <div id="tasks"></div>
+</div>
+
+</main>
+
+<footer class="wrap" style="padding-block: 0 40px; color: var(--muted); font-size: .88rem;">
+  <p>Strona nieoficjalna, do nauki. Treści zadań, rozwiązania i zasady oceniania pochodzą z arkuszy Centralnej Komisji Egzaminacyjnej: <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/arkusze/" style="color: var(--accent);">cke.gov.pl</a>. Podział na poziomy A/B/C to własna analiza arkuszy z lat 2023–2026, nie stanowisko CKE.</p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var TIER_NAME = { A: "A", B: "B", C: "C", X: "Pomiń" };
+  var DATES = { 2026: "5 maja 2026", 2025: "6 maja 2025", 2024: "8 maja 2024", 2023: "8 maja 2023" };
+  var MAX = { 2026: 50, 2025: 50, 2024: 46, 2023: 46 };
+  var filter = "all";
+  var year = null;
+
+  function load() { try { return JSON.parse(localStorage.getItem("umiem") || "[]"); } catch (e) { return []; } }
+  function store(list) { try { localStorage.setItem("umiem", JSON.stringify(list)); } catch (e) {} }
+  var done = new Set(load());
+  try { filter = localStorage.getItem("filtr") || "all"; } catch (e) {}
+
+  function plural(n) { return n === 1 ? "punkt" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? "punkty" : "punktów"; }
+
+  function card(t) {
+    var id = t.y + "-" + t.nr;
+    var el = document.createElement("article");
+    el.className = "task" + (done.has(id) ? " done" : "");
+    el.dataset.tier = t.tier;
+    el.innerHTML =
+      '<div class="task-head">' +
+        '<span class="tag ' + t.tier + '">' + TIER_NAME[t.tier] + '</span>' +
+        '<span class="nr">Zadanie ' + t.nr + '</span>' +
+        '<span class="pts">' + t.pkt + ' ' + plural(t.pkt) + '</span>' +
+        '<span class="typ">' + t.typ + '</span>' +
+      '</div>' +
+      '<div class="sheet"><img loading="lazy" alt="Treść zadania ' + t.nr + ' z matury ' + t.y + '" src="' + t.t + '"></div>' +
+      '<div class="solution" hidden><div class="label">Rozwiązanie i zasady oceniania (CKE)</div><div class="sheet"><img alt="Rozwiązanie zadania ' + t.nr + '"></div></div>' +
+      '<div class="task-foot">' +
+        '<button type="button" class="btn">Pokaż rozwiązanie</button>' +
+        '<label class="check"><input type="checkbox" id="umiem-' + id + '"' + (done.has(id) ? " checked" : "") + '> Umiem</label>' +
+      '</div>';
+    var sol = el.querySelector(".solution");
+    var btn = el.querySelector(".btn");
+    btn.addEventListener("click", function () {
+      var img = sol.querySelector("img");
+      if (!img.getAttribute("src")) img.src = t.r;
+      sol.hidden = !sol.hidden;
+      btn.textContent = sol.hidden ? "Pokaż rozwiązanie" : "Ukryj rozwiązanie";
+      btn.classList.toggle("ghost", !sol.hidden);
+    });
+    el.querySelector("input").addEventListener("change", function (e) {
+      if (e.target.checked) done.add(id); else done.delete(id);
+      el.classList.toggle("done", e.target.checked);
+      store(Array.from(done));
+      progress();
+    });
+    return el;
+  }
+
+  function progress() {
+    if (!year) return;
+    var list = window.TASKS.filter(function (t) { return t.y === year && (filter === "all" || t.tier === filter); });
+    var pts = list.reduce(function (s, t) { return s + t.pkt; }, 0);
+    var got = list.filter(function (t) { return done.has(t.y + "-" + t.nr); }).reduce(function (s, t) { return s + t.pkt; }, 0);
+    document.getElementById("progress").textContent = "Umiem: " + got + " z " + pts + " pkt";
+  }
+
+  function applyFilter() {
+    document.querySelectorAll("#filters button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.f === filter)); });
+    document.querySelectorAll("#tasks .task").forEach(function (el) { el.hidden = !(filter === "all" || el.dataset.tier === filter); });
+    progress();
+  }
+
+  function showYear(y) {
+    year = y;
+    var list = window.TASKS.filter(function (t) { return t.y === y; });
+    var byTier = { A: 0, B: 0, C: 0, X: 0 };
+    list.forEach(function (t) { byTier[t.tier] += t.pkt; });
+    document.getElementById("year-title").textContent = "Matura " + y;
+    document.getElementById("year-lead").textContent = DATES[y] + " · " + MAX[y] + " pkt · A: " + byTier.A + " pkt, B: " + byTier.B + " pkt, C: " + byTier.C + " pkt, pomiń: " + byTier.X + " pkt";
+    var box = document.getElementById("tasks");
+    box.textContent = "";
+    list.forEach(function (t) { box.appendChild(card(t)); });
+    applyFilter();
+  }
+
+  function route() {
+    var h = location.hash.replace("#", "");
+    var m = /^rok-(\d{4})$/.exec(h);
+    var isYear = !!m && !!DATES[m[1]];
+    document.getElementById("view-start").hidden = isYear;
+    document.getElementById("view-year").hidden = !isYear;
+    document.querySelectorAll("#nav a").forEach(function (a) {
+      var target = a.getAttribute("href").slice(1);
+      var current = isYear ? target === h : target === "start";
+      if (current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    if (isYear) {
+      if (year !== +m[1]) showYear(+m[1]);
+      window.scrollTo(0, 0);
+    } else {
+      year = null;
+      var target = h && h !== "start" ? document.getElementById(h) : null;
+      if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+    }
+  }
+
+  document.getElementById("filters").addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b) return;
+    filter = b.dataset.f;
+    try { localStorage.setItem("filtr", filter); } catch (err) {}
+    applyFilter();
+  });
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+</body>
+</html>
