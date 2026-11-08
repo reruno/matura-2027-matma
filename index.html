@@ -117,6 +117,19 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
 .needs a { color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; background: var(--bg); }
 .needs a:hover { border-color: var(--accent); }
 .basics section:target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+h2, .basics section { scroll-margin-top: 80px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 20px 0 8px; }
+.facts div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; min-width: 0; }
+.facts span { color: var(--muted); font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+.facts b { font-size: 1.08rem; }
+.facts small { color: var(--muted); font-size: .88rem; }
+.checklist { list-style: none; padding: 0; display: grid; gap: 8px; }
+.checklist li { position: relative; padding-left: 30px; max-width: 68ch; }
+.checklist li::before { content: ""; position: absolute; left: 0; top: .2em; width: 18px; height: 18px; border: 2px solid var(--accent); border-radius: 4px; }
+.warn { background: var(--c-bg); color: var(--fg); border-radius: 10px; padding: 12px 16px; max-width: none; }
+.basics-list { padding-left: 1.2em; }
+.basics-list li { margin: 6px 0; }
+#view-egzamin a { color: var(--accent); }
 #wz-toc a { color: var(--accent); text-decoration: none; }
 #wz-toc a:hover { text-decoration: underline; }
 #wz-toc td:last-child { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
@@ -140,6 +153,7 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
     <div class="brand">Matura 2027 · matematyka <small>poziom podstawowy</small></div>
     <nav id="nav">
       <a href="#start">Start i podstawy</a>
+      <a href="#egzamin">O egzaminie</a>
       <a href="#wzory">Karta wzorów</a>
       <a href="#rok-2026">2026</a>
       <a href="#rok-2025">2025</a>
@@ -155,7 +169,8 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
   <h1>Jak się uczyć z tej strony</h1>
   <p class="lead">Tu są wszystkie zadania z prawdziwych matur CKE (maj 2023–2026), każde z oficjalnym rozwiązaniem i oznaczeniem, czy warto się go uczyć.</p>
   <ol class="steps">
-    <li>Najpierw przeczytaj <a href="#podstawy">podstawy</a> niżej. To krótkie przypomnienie zasad, bez których nie ruszysz zadań.</li>
+    <li>Jeśli to Twój pierwszy raz – przeczytaj <a href="#egzamin">O egzaminie</a>: kiedy, co zabrać, jak oceniają.</li>
+    <li>Przeczytaj <a href="#podstawy">podstawy</a> niżej. To krótkie przypomnienie zasad, bez których nie ruszysz zadań.</li>
     <li>Wybierz rok (najlepiej zacznij od <a href="#rok-2026">2026</a> i <a href="#rok-2025">2025</a> – są najbardziej podobne do Twojej matury). Ustaw filtr na <span class="tag A">A</span>.</li>
     <li>Rozwiąż zadanie na kartce. Dopiero potem kliknij <b>Pokaż rozwiązanie</b> i porównaj.</li>
     <li>Jeśli wyszło dobrze – zaznacz <b>Umiem</b>. Jeśli nie – wróć do tego typu za kilka dni.</li>
@@ -425,6 +440,92 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
   </div>
 </div>
 
+<div id="view-egzamin" hidden>
+  <h1>Matura z matmy – co trzeba wiedzieć</h1>
+  <p class="lead">Wszystko o samym egzaminie w jednym miejscu: kiedy, co zabrać, jak wygląda sala i arkusz, jak oceniają i co jeśli się nie uda. Na podstawie oficjalnych komunikatów CKE na rok 2027.</p>
+
+  <div class="facts">
+    <div><span>Kiedy</span><b>środa, 5 maja 2027</b><small>godz. 9:00</small></div>
+    <div><span>Czas</span><b>180 minut</b><small>3 godziny, bez przerwy</small></div>
+    <div><span>Do zdobycia</span><b>50 punktów</b><small>ok. 30–35 zadań</small></div>
+    <div><span>Zdajesz od</span><b>15 punktów</b><small>30% – próg zdania</small></div>
+    <div><span>Wyniki</span><b>9 lipca 2027</b><small>w szkole i online</small></div>
+  </div>
+
+  <h2 id="e-zabierz">Co zabrać</h2>
+  <ul class="checklist">
+    <li><b>Dokument ze zdjęciem</b> (dowód osobisty, legitymacja szkolna albo paszport). Można pokazać mDowód w mObywatelu, ale telefon i tak musi zostać poza salą.</li>
+    <li><b>Długopis lub pióro z czarnym tuszem</b> – weź 2–3 sztuki. Tylko na czarno.</li>
+    <li><b>Linijka</b> i <b>cyrkiel</b>.</li>
+    <li><b>Kalkulator prosty</b> – tylko dodawanie, odejmowanie, mnożenie, dzielenie, ewentualnie procenty i pierwiastek kwadratowy. Kalkulator naukowy (z sin, log) jest niedozwolony. Jeśli nie masz – szkoła ma zapewnić.</li>
+    <li>Możesz wziąć <b>butelkę wody</b> (stoi na podłodze przy stoliku).</li>
+    <li><b>Broszurę „Wybrane wzory matematyczne”</b> dostaniesz na miejscu od szkoły – <a href="#wzory">zobacz ją tutaj</a> i poznaj wcześniej.</li>
+  </ul>
+  <p class="warn"><b>Nie wolno wnosić</b> telefonu, smartwatcha, słuchawek ani żadnego urządzenia, które łączy się z internetem lub innymi urządzeniami. Za to egzamin może zostać unieważniony. Korektora też nie używaj – pomyłki po prostu przekreśl.</p>
+
+  <h2 id="e-sala">Dzień egzaminu krok po kroku</h2>
+  <ol class="steps">
+    <li>Przyjdź wcześniej – szkoła poda godzinę wejścia do sali. Spóźnionych po rozdaniu arkuszy zwykle się nie wpuszcza.</li>
+    <li>Wchodzisz pojedynczo, pokazujesz dokument ze zdjęciem i losujesz numer stolika.</li>
+    <li>Dostajesz arkusz. Sprawdź, czy ma wszystkie strony (liczba stron jest napisana na drugiej stronie). Wpisz PESEL i naklej naklejki z kodem tam, gdzie każą.</li>
+    <li>Przewodniczący zapisuje na tablicy godzinę rozpoczęcia i zakończenia. Od tej chwili masz 180 minut.</li>
+    <li>Do toalety wychodzisz tylko za zgodą, pojedynczo, a arkusz zostaje na stoliku.</li>
+    <li>10 minut przed końcem przypomną o przeniesieniu odpowiedzi na kartę odpowiedzi. Zrób to wcześniej – patrz niżej.</li>
+  </ol>
+
+  <h2 id="e-arkusz">Gdzie co zapisujesz</h2>
+  <div class="tiers">
+    <div class="tier-row"><span class="tag A">1</span><div><b>Zeszyt zadań</b> – tu są wszystkie zadania. Możesz w nim liczyć i rysować. Miejsca podpisane „Brudnopis” <b>nie są oceniane</b>.</div></div>
+    <div class="tier-row"><span class="tag A">2</span><div><b>Karta odpowiedzi</b> (ostatnia strona) – tu zaznaczasz odpowiedzi do zadań zamkniętych. <b>Liczy się tylko to, co jest na karcie</b>, nawet jeśli w zeszycie zaznaczyłeś co innego. Zadania, które trzeba przenieść, mają w nagłówku symbol kratek z ołówkiem. Pole zamalowujesz; pomyłkę otaczasz kółkiem i zamalowujesz właściwe pole.</div></div>
+    <div class="tier-row"><span class="tag B">3</span><div><b>Rozwiązania zadań otwartych</b> – pełne obliczenia. <b>Nowość w 2027:</b> w części okręgowych komisji (OKE) prace z matematyki podstawowej będą sprawdzane na ekranie i rozwiązania zadań otwartych zapisuje się na osobnej <b>karcie rozwiązań zadań otwartych</b> (16–20 stron wyjmowanych ze środka zeszytu). Przy zadaniu będzie napisane, gdzie pisać. Szkoła dowie się w marcu–kwietniu 2027, czy jej to dotyczy – zapytaj nauczyciela.</div></div>
+  </div>
+  <p class="ex">Rada: przenoś odpowiedzi na kartę od razu po każdej stronie zadań, nie na koniec. Na końcu łatwo zabraknąć czasu.</p>
+
+  <h2 id="e-ocena">Jak oceniają</h2>
+  <ul class="basics-list">
+    <li><b>Zadania zamknięte (A–D)</b>: 1 pkt za dobrą odpowiedź, 0 za złą. <b>Nie ma punktów ujemnych</b> – nigdy nie zostawiaj pustego pola, w najgorszym razie strzelaj.</li>
+    <li><b>Prawda/Fałsz</b>: punkt dostajesz tylko wtedy, gdy <b>wszystkie</b> stwierdzenia w zadaniu ocenisz dobrze.</li>
+    <li><b>Uzupełnij</b>: wpisujesz liczbę albo przedział w wykropkowane miejsce. Gdy są dwa zdania za 2 pkt – każde jest za 1 pkt osobno.</li>
+    <li><b>Zadania otwarte</b> („Zapisz obliczenia”, „Wykaż”): punkty są za kolejne etapy. Dobry pierwszy krok często daje punkt, nawet jeśli dalej się pomylisz. Błąd rachunkowy przy dobrej metodzie zwykle kosztuje 1 pkt, nie wszystkie.</li>
+    <li>Sam wynik bez obliczeń w zadaniu otwartym może dać 0 pkt. Zawsze pokazuj, skąd co wziąłeś.</li>
+    <li>Pisz czytelnie – egzaminator ocenia tylko to, co da się odczytać.</li>
+  </ul>
+
+  <h2 id="e-polecenia">Słowniczek poleceń z arkusza</h2>
+  <div class="tbl"><table>
+    <tr><th>W arkuszu jest napisane</th><th>Co masz zrobić</th></tr>
+    <tr><td>Dokończ zdanie. Wybierz właściwą odpowiedź spośród podanych.</td><td>Zaznacz jedną odpowiedź A, B, C albo D.</td></tr>
+    <tr><td>Wybierz odpowiedź A albo B oraz odpowiedź 1., 2. albo 3.</td><td>Zaznacz dwie rzeczy: jedną literę i jedną cyfrę.</td></tr>
+    <tr><td>Oceń prawdziwość poniższych stwierdzeń. Wybierz P albo F.</td><td>Przy każdym zdaniu zaznacz P (prawda) albo F (fałsz).</td></tr>
+    <tr><td>Uzupełnij zdanie / tabelę.</td><td>Wpisz liczbę, przedział albo literę w puste miejsce.</td></tr>
+    <tr><td>Przyporządkuj / dopasuj.</td><td>Połącz elementy z dwóch list (wpisz litery do tabelki).</td></tr>
+    <tr><td>Oblicz … / Rozwiąż … Zapisz obliczenia.</td><td>Zadanie otwarte: pokaż wszystkie kroki i podaj wynik.</td></tr>
+    <tr><td>Wykaż, że … / Uzasadnij …</td><td>Dowód: pokaż rachunkiem albo słowami, dlaczego to prawda (<a href="#p-dowod">przepis</a>).</td></tr>
+  </table></div>
+
+  <h2 id="e-daty">Ważne daty 2026/2027</h2>
+  <div class="tbl"><table>
+    <tr><th>Kiedy</th><th>Co</th></tr>
+    <tr><td>do 7 lutego 2027</td><td>Ostatni dzień na zmiany w deklaracji maturalnej (w swojej szkole).</td></tr>
+    <tr><td><b>5 maja 2027, 9:00</b></td><td><b>Matematyka – poziom podstawowy.</b></td></tr>
+    <tr><td>2 czerwca 2027, 9:00</td><td>Termin dodatkowy – tylko dla osób, które z ważnych powodów (np. choroba) nie mogły pisać w maju. Trzeba złożyć wniosek.</td></tr>
+    <tr><td>9 lipca 2027</td><td>Wyniki i świadectwa.</td></tr>
+    <tr><td>do 16 lipca 2027</td><td>Oświadczenie o przystąpieniu do poprawki (jeśli potrzebna).</td></tr>
+    <tr><td>23 sierpnia 2027, 9:00</td><td>Poprawka (część pisemna).</td></tr>
+    <tr><td>10 września 2027</td><td>Wyniki poprawki.</td></tr>
+  </table></div>
+
+  <h2 id="e-zdanie">Kiedy matura jest zdana i co jeśli nie</h2>
+  <ul class="basics-list">
+    <li>Z matematyki trzeba mieć <b>co najmniej 30%</b>, czyli <b>15 z 50 pkt</b>. Tak samo z polskiego i języka obcego (pisemnie i ustnie).</li>
+    <li>Do matury trzeba też <b>przystąpić</b> do co najmniej jednego przedmiotu na poziomie rozszerzonym.</li>
+    <li>Jeśli nie zdasz <b>tylko jednego</b> przedmiotu obowiązkowego, możesz go poprawić w sierpniu (23 sierpnia 2027). Trzeba złożyć oświadczenie do 16 lipca.</li>
+    <li>Wynik w procentach wpisuje się do rekrutacji na studia – dlatego warto celować wyżej niż 30%.</li>
+  </ul>
+
+  <p class="ex">Źródła: <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/harmonogram-komunikaty-i-informacje/rok-szkolny-2026-2027/" style="color: var(--accent);">komunikaty CKE na rok szkolny 2026/2027</a> (harmonogram, przybory, informacja o egzaminie) oraz instrukcje z arkuszy 2023–2026.</p>
+</div>
+
 <div id="view-wzory" hidden>
   <h1>Karta wzorów</h1>
   <p class="lead">To jest broszura <b>„Wybrane wzory matematyczne na egzamin maturalny z matematyki”</b> (CKE). Każdy zdający dostaje ją na egzaminie razem z arkuszem – ta sama broszura na poziomie podstawowym i rozszerzonym.</p>
@@ -592,9 +693,20 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
     var m = /^rok-(\d{4})$/.exec(h);
     var isYear = !!m && !!DATES[m[1]];
     var isWz = h === "wzory" || /^wz-\d+$/.test(h);
-    document.getElementById("view-start").hidden = isYear || isWz;
+    var isEgz = h === "egzamin" || /^e-[a-z]+$/.test(h);
+    document.getElementById("view-start").hidden = isYear || isWz || isEgz;
     document.getElementById("view-year").hidden = !isYear;
     document.getElementById("view-wzory").hidden = !isWz;
+    document.getElementById("view-egzamin").hidden = !isEgz;
+    if (isEgz) {
+      document.getElementById("back").hidden = true;
+      var sec = h !== "egzamin" ? document.getElementById(h) : null;
+      if (sec) sec.scrollIntoView({ block: "start" }); else window.scrollTo(0, 0);
+      document.querySelectorAll("#nav a").forEach(function (a) {
+        if (a.getAttribute("href") === "#egzamin") a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+      });
+      return;
+    }
     if (isWz) {
       buildWzory();
       document.getElementById("back").hidden = true;
