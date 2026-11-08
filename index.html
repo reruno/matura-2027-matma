@@ -112,6 +112,12 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
 .solution .label { padding: 10px 16px 0; color: var(--muted); font-size: .88rem; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .empty { color: var(--muted); }
+.needs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 10px 16px; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.needs span { color: var(--muted); }
+.needs a { color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; background: var(--bg); }
+.needs a:hover { border-color: var(--accent); }
+.basics section:target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.back { position: fixed; z-index: 6; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); box-shadow: 0 4px 16px rgba(0, 0, 0, .25); }
 @media (max-width: 520px) {
   body { font-size: 16px; }
   h1 { font-size: 1.55rem; }
@@ -168,9 +174,11 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
   <p class="lead">Większość wzorów jest w broszurze <b>„Wybrane wzory matematyczne”</b>, którą dostaniesz na egzaminie. Nie ucz się ich na pamięć – naucz się, gdzie są. Tu masz zasady, które trzeba umieć „z ręki”.</p>
   <ul class="toc">
     <li><a href="#p-liczby">Ułamki i minusy</a></li>
+    <li><a href="#p-abs">Wartość bezwzględna</a></li>
     <li><a href="#p-potegi">Potęgi i pierwiastki</a></li>
     <li><a href="#p-log">Logarytmy</a></li>
     <li><a href="#p-wzory">Wzory skróconego mnożenia</a></li>
+    <li><a href="#p-dowod">Dowód podzielności</a></li>
     <li><a href="#p-proc">Procenty</a></li>
     <li><a href="#p-rown">Równania i nierówności</a></li>
     <li><a href="#p-wykres">Czytanie wykresu</a></li>
@@ -196,6 +204,17 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
         <li>Dzielenie przez ułamek – mnożysz przez odwrotność: <span class="m">2/3 : 4/5 = 2/3 · 5/4 = 10/12 = 5/6</span>.</li>
         <li>Kolejność: nawiasy → potęgi i pierwiastki → mnożenie i dzielenie → dodawanie i odejmowanie.</li>
         <li>Minus przed nawiasem zmienia wszystkie znaki w środku: <span class="m">−2(x − 3) = −2x + 6</span>.</li>
+      </ul>
+    </section>
+
+    <section id="p-abs">
+      <h3>Wartość bezwzględna i przedziały na osi</h3>
+      <ul>
+        <li><span class="m">|x − a|</span> to odległość liczby x od liczby a na osi.</li>
+        <li><span class="m">|x − a| ≤ r</span> – x jest blisko a (najwyżej r): <span class="m">x ∈ [a − r, a + r]</span>. Jeden przedział.</li>
+        <li><span class="m">|x − a| ≥ r</span> – x jest daleko od a (co najmniej r): <span class="m">x ∈ (−∞, a − r] ∪ [a + r, +∞)</span>. Dwa kawałki.</li>
+        <li>Uwaga na znak: <span class="m">|x + 3|</span> = <span class="m">|x − (−3)|</span>, czyli środek to −3.</li>
+        <li>Z rysunku do wzoru: środek a = środek między końcami, r = połowa odległości między nimi. Końce −2 i 5: <span class="m">a = 1,5</span>, <span class="m">r = 3,5</span>.</li>
       </ul>
     </section>
 
@@ -234,6 +253,23 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
       <p class="ex">Typowe zadanie: <span class="m">(2a + b)² − (2a − b)²</span>. Rozpisz oba nawiasy, odejmij (pamiętaj o minusie przed drugim nawiasem): wynik <span class="m">8ab</span>.</p>
     </section>
 
+    <section id="p-dowod">
+      <h3>Dowód podzielności („Wykaż, że … jest podzielna przez …”)</h3>
+      <p>Co roku jedno takie zadanie za 2 pkt. Przepis jest zawsze ten sam:</p>
+      <ol class="steps">
+        <li>Rozpisz wyrażenie (wzory skróconego mnożenia, wymnóż nawiasy) i uprość.</li>
+        <li>Wyciągnij przed nawias liczbę, przez którą ma się dzielić (albo jej część).</li>
+        <li>Napisz jedno zdanie, dlaczego to, co zostało w nawiasie, jest liczbą całkowitą (albo parzystą).</li>
+      </ol>
+      <ul>
+        <li><span class="m">(2n + 1)² − 1 = 4n² + 4n = 4n(n + 1)</span>. <span class="m">n(n + 1)</span> to dwie kolejne liczby, więc jedna jest parzysta – iloczyn jest parzysty, czyli <span class="m">4 · 2k = 8k</span>. Podzielne przez 8.</li>
+        <li><span class="m">7n² + 21n = 7n(n + 3)</span>. Liczby n i n + 3 różnią się o 3, więc jedna z nich jest parzysta – <span class="m">7 · 2k = 14k</span>.</li>
+        <li>Reszta z dzielenia: pokaż, że liczba = <span class="m">3 · (liczba całkowita) + 2</span> – wtedy przy dzieleniu przez 3 reszta wynosi 2.</li>
+        <li>Liczba nieparzysta: zapisz <span class="m">n = 2k + 1</span> i wstaw do wyrażenia.</li>
+      </ul>
+      <p class="ex">Nawet jeśli nie dokończysz: sam poprawnie rozpisany i uproszczony wzór często daje 1 punkt.</p>
+    </section>
+
     <section id="p-proc">
       <h3>Procenty</h3>
       <ul>
@@ -252,6 +288,7 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
         <li><b>Równanie iloczynowe</b>: iloczyn = 0, gdy któryś czynnik = 0. <span class="m">2x(x + 3)(x² + 25) = 0 → x = 0 lub x = −3</span> (bo x² + 25 nigdy nie jest zerem).</li>
         <li><b>Równanie z x w mianowniku</b>: najpierw wypisz liczby, dla których mianownik = 0 – one nie mogą być rozwiązaniem.</li>
         <li><b>Układ równań z treści</b>: nazwij dwie niewiadome (x, y), napisz dwa równania z dwóch zdań treści, wylicz y z jednego i wstaw do drugiego.</li>
+        <li><b>Równanie 3. stopnia – grupowanie</b>: <span class="m">x³ − 2x² − 3x + 6 = x²(x − 2) − 3(x − 2) = (x − 2)(x² − 3)</span>, więc <span class="m">x = 2</span> lub <span class="m">x = ±√3</span>.</li>
       </ul>
     </section>
 
@@ -313,6 +350,8 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
         <li>W trójkącie prostokątnym, dla kąta α: <span class="m">sin α = przeciwległa / przeciwprostokątna</span>, <span class="m">cos α = przyległa / przeciwprostokątna</span>, <span class="m">tg α = przeciwległa / przyległa</span>.</li>
         <li><span class="m">sin²α + cos²α = 1</span> oraz <span class="m">tg α = sin α / cos α</span>.</li>
         <li>Kąt w układzie współrzędnych przez punkt <span class="m">P = (x, y)</span>: <span class="m">r = √(x² + y²)</span>, <span class="m">sin α = y/r</span>, <span class="m">cos α = x/r</span>, <span class="m">tg α = y/x</span>.</li>
+        <li>Kąt rozwarty: <span class="m">sin(180° − α) = sin α</span>, <span class="m">cos(180° − α) = −cos α</span>. Np. <span class="m">sin 150° = sin 30° = 1/2</span>, <span class="m">sin 120° = sin 60° = √3/2</span>.</li>
+        <li>Nachylenie prostej <span class="m">y = ax + b</span> do osi Ox: <span class="m">tg α = a</span>.</li>
       </ul>
       <div class="tbl"><table>
         <tr><th></th><th>30°</th><th>45°</th><th>60°</th></tr>
@@ -328,8 +367,13 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
         <li>Suma kątów w trójkącie: 180°. Twierdzenie Pitagorasa: <span class="m">a² + b² = c²</span> (c – najdłuższy bok).</li>
         <li><b>Kąt środkowy = 2 × kąt wpisany</b> oparty na tym samym łuku. Kąt wpisany oparty na średnicy = 90°.</li>
         <li>Trójkąt z dwoma bokami będącymi promieniami jest równoramienny – kąty przy podstawie są równe.</li>
-        <li>Pole trójkąta: <span class="m">½ · a · h</span> albo <span class="m">½ · a · b · sin γ</span>.</li>
-        <li>Figury podobne w skali k: długości × k, pola × k², objętości × k³.</li>
+        <li>Pole trójkąta: <span class="m">½ · a · h</span> albo <span class="m">½ · a · b · sin γ</span>. Równoległobok: <span class="m">a · b · sin α</span>. Romb: <span class="m">a² · sin α</span> = ½ · iloczyn przekątnych.</li>
+        <li>Figury podobne w skali k: długości × k, pola × k², objętości × k³. W trójkątach podobnych odpowiednie boki są w tym samym stosunku – ułóż proporcję.</li>
+        <li><b>Twierdzenie Talesa</b>: dwie proste równoległe przecięte dwiema prostymi dają trójkąty podobne – odcinki są proporcjonalne.</li>
+        <li><b>Dwusieczna</b> kąta w trójkącie dzieli przeciwległy bok w stosunku sąsiednich boków: <span class="m">|KN| : |NL| = |KM| : |LM|</span>.</li>
+        <li>Trójkąt równoboczny o boku a: wysokość <span class="m">h = a√3/2</span>, promień okręgu opisanego <span class="m">R = a√3/3</span>.</li>
+        <li>Trójkąt prostokątny: środek okręgu opisanego = środek przeciwprostokątnej.</li>
+        <li><b>Twierdzenie cosinusów</b>: <span class="m">c² = a² + b² − 2ab · cos γ</span> (γ – kąt między bokami a i b).</li>
       </ul>
     </section>
 
@@ -391,6 +435,8 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
 
 </main>
 
+<button type="button" class="btn back" id="back" hidden>← Wróć do zadania</button>
+
 <footer class="wrap" style="padding-block: 0 40px; color: var(--muted); font-size: .88rem;">
   <p>Strona nieoficjalna, do nauki. Treści zadań, rozwiązania i zasady oceniania pochodzą z arkuszy Centralnej Komisji Egzaminacyjnej: <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/arkusze/" style="color: var(--accent);">cke.gov.pl</a>. Podział na poziomy A/B/C to własna analiza arkuszy z lat 2023–2026, nie stanowisko CKE.</p>
 </footer>
@@ -414,6 +460,7 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
   function card(t) {
     var id = t.y + "-" + t.nr;
     var el = document.createElement("article");
+    el.id = "z-" + id.replace(".", "-");
     el.className = "task" + (done.has(id) ? " done" : "");
     el.dataset.tier = t.tier;
     el.innerHTML =
@@ -422,6 +469,9 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
         '<span class="nr">Zadanie ' + t.nr + '</span>' +
         '<span class="pts">' + t.pkt + ' ' + plural(t.pkt) + '</span>' +
         '<span class="typ">' + t.typ + '</span>' +
+      '</div>' +
+      '<div class="needs"><span>Potrzebne podstawy:</span>' +
+        t.p.map(function (p) { return '<a href="#' + p[0] + '" data-from="' + id + '">' + p[1] + '</a>'; }).join("") +
       '</div>' +
       '<div class="sheet"><img loading="lazy" alt="Treść zadania ' + t.nr + ' z matury ' + t.y + '" src="' + t.t + '"></div>' +
       '<div class="solution" hidden><div class="label">Rozwiązanie i zasady oceniania (CKE)</div><div class="sheet"><img alt="Rozwiązanie zadania ' + t.nr + '"></div></div>' +
@@ -485,15 +535,31 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
       var current = isYear ? target === h : target === "start";
       if (current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
+    var back = document.getElementById("back");
     if (isYear) {
+      back.hidden = true;
       if (year !== +m[1]) showYear(+m[1]);
-      window.scrollTo(0, 0);
+      var card = returnTo && returnTo.hash === h ? document.getElementById(returnTo.card) : null;
+      if (card) card.scrollIntoView({ block: "center" }); else window.scrollTo(0, 0);
+      returnTo = null;
     } else {
-      year = null;
+      back.hidden = !returnTo;
+      if (returnTo) back.textContent = "← Wróć do zadania " + returnTo.label;
       var target = h && h !== "start" ? document.getElementById(h) : null;
-      if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+      if (target) target.scrollIntoView({ block: "start" }); else window.scrollTo(0, 0);
     }
   }
+
+  var returnTo = null;
+  document.getElementById("tasks").addEventListener("click", function (e) {
+    var a = e.target.closest(".needs a");
+    if (!a) return;
+    var id = a.dataset.from;
+    returnTo = { hash: "rok-" + id.split("-")[0], card: "z-" + id.replace(".", "-"), label: id.split("-")[1] + " (" + id.split("-")[0] + ")" };
+  });
+  document.getElementById("back").addEventListener("click", function () {
+    if (returnTo) location.hash = returnTo.hash;
+  });
 
   document.getElementById("filters").addEventListener("click", function (e) {
     var b = e.target.closest("button");
