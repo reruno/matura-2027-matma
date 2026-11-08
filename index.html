@@ -142,6 +142,8 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
 .step .needs { border-bottom: 0; border-top: 1px solid var(--line); }
 .needs a.tag { border: 0; padding: 0 9px; height: 26px; font-size: .85rem; text-decoration: none; }
 .needs a.tag.ok { outline: 2px solid var(--a); outline-offset: -2px; }
+.needs a.tag.old { text-decoration: line-through; opacity: .7; }
+.oldnote { flex-basis: 100%; font-size: .88rem; color: var(--c); background: var(--c-bg); border-radius: 6px; padding: 4px 10px; }
 .milestone-line { margin: 4px 0 0; padding: 10px 14px; border-radius: 10px; background: var(--a-bg); color: var(--fg); font-size: .95rem; }
 @media (max-width: 520px) { .recipe { padding-left: 16px; } .step-head { grid-template-columns: 30px 1fr; } .step-prog { grid-column: 2; } }
 .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 20px 0 8px; }
@@ -262,10 +264,10 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
       <h3>Wartość bezwzględna i przedziały na osi</h3>
       <ul>
         <li><span class="m">|x − a|</span> to odległość liczby x od liczby a na osi.</li>
-        <li><span class="m">|x − a| ≤ r</span> – x jest blisko a (najwyżej r): <span class="m">x ∈ [a − r, a + r]</span>. Jeden przedział.</li>
-        <li><span class="m">|x − a| ≥ r</span> – x jest daleko od a (co najmniej r): <span class="m">x ∈ (−∞, a − r] ∪ [a + r, +∞)</span>. Dwa kawałki.</li>
+        <li>Równanie <span class="m">|x − a| = r</span> (dla r ≥ 0): <span class="m">x = a − r</span> lub <span class="m">x = a + r</span>. Np. <span class="m">|x + 4| = 5</span> → x = −9 lub x = 1.</li>
+        <li class="ex">Od 2025 r. na poziomie podstawowym wymagane są tylko <b>równania</b> z wartością bezwzględną. Nierówności typu <span class="m">|x − a| ≤ r</span> przeszły na poziom rozszerzony – w starszych arkuszach (2023, 2024) jeszcze były.</li>
         <li>Uwaga na znak: <span class="m">|x + 3|</span> = <span class="m">|x − (−3)|</span>, czyli środek to −3.</li>
-        <li>Z rysunku do wzoru: środek a = środek między końcami, r = połowa odległości między nimi. Końce −2 i 5: <span class="m">a = 1,5</span>, <span class="m">r = 3,5</span>.</li>
+        <li>Liczby zaznaczone na osi: punkt a to środek, r to odległość od środka. Dwa punkty −2 i 5 to rozwiązania <span class="m">|x − 1,5| = 3,5</span>.</li>
       </ul>
     </section>
 
@@ -337,9 +339,9 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
         <li>W nierówności: mnożąc lub dzieląc przez liczbę <b>ujemną</b>, odwracasz znak: <span class="m">−2x &lt; 6 → x &gt; −3</span>.</li>
         <li>Ułamki w równaniu – pomnóż obie strony przez wspólny mianownik.</li>
         <li><b>Równanie iloczynowe</b>: iloczyn = 0, gdy któryś czynnik = 0. <span class="m">2x(x + 3)(x² + 25) = 0 → x = 0 lub x = −3</span> (bo x² + 25 nigdy nie jest zerem).</li>
-        <li><b>Równanie z x w mianowniku</b>: najpierw wypisz liczby, dla których mianownik = 0 – one nie mogą być rozwiązaniem.</li>
+        <li><b>Ułamek = ułamek</b> (np. <span class="m">5/(x + 1) = (x + 3)/(2x − 1)</span>): pomnóż „na krzyż”. Liczby, dla których mianownik = 0, nie mogą być rozwiązaniem.</li>
         <li><b>Układ równań z treści</b>: nazwij dwie niewiadome (x, y), napisz dwa równania z dwóch zdań treści, wylicz y z jednego i wstaw do drugiego.</li>
-        <li><b>Równanie 3. stopnia – grupowanie</b>: <span class="m">x³ − 2x² − 3x + 6 = x²(x − 2) − 3(x − 2) = (x − 2)(x² − 3)</span>, więc <span class="m">x = 2</span> lub <span class="m">x = ±√3</span>.</li>
+        <li class="ex">Grupowanie wyrazów w wielomianach i rozwiązywanie równań wymiernych są od 2025 r. tylko na poziomie rozszerzonym. Na podstawie wystarczy postać iloczynowa (nawias × nawias = 0).</li>
       </ul>
     </section>
 
@@ -352,7 +354,7 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
         <li><b>Rośnie / maleje</b> – patrzysz od lewej do prawej: idzie w górę = rośnie.</li>
         <li><b>Miejsce zerowe</b> – x, w którym wykres przecina oś poziomą (Ox).</li>
         <li><span class="m">f(x) ≥ 0</span> – te x, gdzie wykres jest nad osią Ox lub na niej.</li>
-        <li><span class="m">f(x + 3)</span> – wykres przesunięty o 3 w <b>lewo</b>. <span class="m">f(x) − 3</span> – o 3 w <b>dół</b>. <span class="m">f(−x)</span> – odbicie względem osi Oy.</li>
+        <li><span class="m">f(x + 3)</span> – wykres przesunięty o 3 w <b>lewo</b>, <span class="m">f(x − 3)</span> – o 3 w <b>prawo</b>. <span class="m">f(x) − 3</span> – o 3 w <b>dół</b>, <span class="m">f(x) + 3</span> – w <b>górę</b>. (Odbić typu f(−x) od 2025 r. nie wymagają.)</li>
       </ul>
     </section>
 
@@ -362,7 +364,7 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
         <li><span class="m">a &gt; 0</span> rośnie, <span class="m">a &lt; 0</span> maleje, <span class="m">a = 0</span> stała.</li>
         <li><span class="m">b</span> – gdzie wykres przecina oś Oy: punkt <span class="m">(0, b)</span>.</li>
         <li>Miejsce zerowe: rozwiąż <span class="m">ax + b = 0</span>.</li>
-        <li>Proste <b>równoległe</b> – takie samo a. Proste <b>prostopadłe</b> – <span class="m">a₁ · a₂ = −1</span> (np. 2 i −1/2).</li>
+        <li>Proste <b>równoległe</b> – takie samo a. (Warunku prostopadłości <span class="m">a₁ · a₂ = −1</span> od 2025 r. nie wymagają – pojawia się tylko w starszych arkuszach.)</li>
         <li>Prosta przez punkt: wstaw x i y punktu do <span class="m">y = ax + b</span> i wylicz b.</li>
       </ul>
     </section>
@@ -421,7 +423,6 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
         <li>Pole trójkąta: <span class="m">½ · a · h</span> albo <span class="m">½ · a · b · sin γ</span>. Równoległobok: <span class="m">a · b · sin α</span>. Romb: <span class="m">a² · sin α</span> = ½ · iloczyn przekątnych.</li>
         <li>Figury podobne w skali k: długości × k, pola × k², objętości × k³. W trójkątach podobnych odpowiednie boki są w tym samym stosunku – ułóż proporcję.</li>
         <li><b>Twierdzenie Talesa</b>: dwie proste równoległe przecięte dwiema prostymi dają trójkąty podobne – odcinki są proporcjonalne.</li>
-        <li><b>Dwusieczna</b> kąta w trójkącie dzieli przeciwległy bok w stosunku sąsiednich boków: <span class="m">|KN| : |NL| = |KM| : |LM|</span>.</li>
         <li>Trójkąt równoboczny o boku a: wysokość <span class="m">h = a√3/2</span>, promień okręgu opisanego <span class="m">R = a√3/3</span>.</li>
         <li>Trójkąt prostokątny: środek okręgu opisanego = środek przeciwprostokątnej.</li>
         <li><b>Twierdzenie cosinusów</b>: <span class="m">c² = a² + b² − 2ab · cos γ</span> (γ – kąt między bokami a i b).</li>
@@ -462,6 +463,8 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
       <ul>
         <li><b>Średnia</b> = suma wszystkich wartości / ile ich jest. Jeśli średnia 3 liczb to 9, ich suma to 27.</li>
         <li><b>Mediana</b> – ustaw liczby rosnąco i weź środkową. Przy parzystej liczbie – średnia dwóch środkowych.</li>
+        <li><b>Dominanta</b> – wartość, która występuje najczęściej.</li>
+        <li><b>Średnia ważona</b> – każdą wartość mnożysz przez jej wagę, sumujesz i dzielisz przez sumę wag. Np. oceny 5 (waga 2) i 3 (waga 1): <span class="m">(5·2 + 3·1) / 3 = 13/3 ≈ 4,33</span>.</li>
         <li>Z diagramu: ocena × liczba uczniów z tą oceną, zsumuj, podziel przez liczbę wszystkich uczniów.</li>
       </ul>
     </section>
@@ -476,7 +479,8 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
     <li>Rozwiąż wszystkie zadania z listy kroku (kliknij numer zadania). Dopiero potem sprawdź rozwiązanie.</li>
     <li>Zaznacz <b>Umiem</b> przy zadaniach, które wyszły. Krok jest zrobiony, gdy umiesz wszystkie.</li>
   </ol>
-  <p class="ex"><b>Jak czytać liczby:</b> „pkt na maturze” – ile średnio ten typ zadania dawał na jednym arkuszu (w skali 50 pkt). „Realnie razem” – ile procent masz po tym kroku, licząc, że na egzaminie trafisz ok. 80% tego, czego się nauczyłeś.</p>
+  <p class="ex"><b>Jak czytać liczby:</b> „pkt na maturze” – ile średnio ten typ zadania dawał na jednym arkuszu (w skali 50 pkt). „Rozwiązuje X% zdających” – jaki odsetek maturzystów w całej Polsce rozwiązał takie zadania w 2025 i 2026 r. (dane ze sprawozdań CKE). „Realnie razem” – ile procent masz po tym kroku, licząc, że na egzaminie trafisz ok. 80% tego, czego się nauczyłeś.</p>
+  <p class="ex"><b>Skąd ta kolejność:</b> kroki są ułożone według tego, ile punktów przeciętny maturzysta zdobywa za dany typ zadania w stosunku do wysiłku. Zgadza się to z tym, co polecają nauczyciele i poradniki maturalne: najpierw funkcje, potęgi i logarytmy, statystyka i trygonometria, później dowody i zadania tekstowe. Tematy wykreślone z wymagań CKE od 2025 r. są na samym końcu – ich nie ucz się wcale.</p>
   <div class="milestones" id="mapa-milestones"></div>
   <div id="mapa-steps"></div>
 </div>
@@ -605,7 +609,7 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
   <p>Strona nieoficjalna, do nauki. Treści zadań, rozwiązania i zasady oceniania pochodzą z arkuszy Centralnej Komisji Egzaminacyjnej: <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/arkusze/" style="color: var(--accent);">cke.gov.pl</a>. Poziomy trudności 1–4 to własna analiza arkuszy z lat 2023–2026, nie stanowisko CKE.</p>
 </footer>
 
-<script src="data.js?v=e807c07355"></script>
+<script src="data.js?v=894107070c"></script>
 <script>
 (function () {
   var LEVEL_HINT = { 1: "bardzo proste", 2: "przepis", 3: "dłuższy przepis", 4: "wymaga pomysłu" };
@@ -634,6 +638,7 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
         '<span class="nr">Zadanie ' + t.nr + '</span>' +
         '<span class="pts">' + t.pkt + ' ' + plural(t.pkt) + '</span>' +
         '<span class="typ">' + t.typ + '</span>' +
+        (t.old ? '<span class="oldnote">Poza wymaganiami od 2025 r. (' + t.old + ') – nie musisz tego umieć.</span>' : "") +
       '</div>' +
       '<div class="needs"><span>Potrzebne podstawy:</span>' +
         (t.p || []).map(function (p) { return '<a href="#' + p[0] + '" data-from="' + id + '">' + p[1] + '</a>'; }).join("") +
@@ -738,7 +743,7 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
     var stepsByPhase = P.phases.map(function () { return []; });
     P.steps.forEach(function (s, i) { s.idx = i + 1; stepsByPhase[s.phase].push(s); });
     var ms = document.getElementById("mapa-milestones");
-    ms.innerHTML = P.phases.slice(0, -1).map(function (ph, i) {
+    ms.innerHTML = P.phases.slice(0, -2).map(function (ph, i) {
       var last = stepsByPhase[i][stepsByPhase[i].length - 1];
       return last ? '<a href="#m-' + last.k + '"><span>' + ph[0].split(" – ")[0] + '</span><b>~' + last.real + '%</b><span>po kroku ' + last.idx + '</span></a>' : "";
     }).join("");
@@ -746,7 +751,7 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
     P.phases.forEach(function (ph, i) {
       var list = stepsByPhase[i];
       if (!list.length) return;
-      var isLast = i === P.phases.length - 1;
+      var isLast = i >= P.phases.length - 2;
       html += '<section class="phase' + (isLast ? " last" : "") + '"><h2>' + ph[0] + '</h2><p>' + ph[1] + '</p>';
       list.forEach(function (s) {
         var got = s.tasks.filter(function (t) { return done.has(t[0] + "-" + t[1]); }).length;
@@ -755,6 +760,7 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
           '<div class="step-head"><span class="num">' + s.idx + '</span><div><b>' + s.name + '</b>' +
           '<div class="step-meta"><span class="tag l' + s.lvl + '">Poziom ' + s.lvl + '</span>' +
           '<span>~' + String(s.pts).replace(".", ",") + ' pkt na maturze</span><span>był w ' + s.years + ' z 4 lat</span>' +
+          (s.rate ? '<span>rozwiązuje ' + s.rate + '% zdających</span>' : "") +
           (isLast ? "" : '<span>realnie razem ~' + s.real + '%</span>') + '</div></div>' +
           '<span class="step-prog">Umiem ' + got + '/' + s.tasks.length + '</span></div>' +
           '<p class="recipe"><b>Przepis:</b> ' + s.recipe + '</p>' +
@@ -763,7 +769,8 @@ h2, .basics section, .step, .task { scroll-margin-top: 90px; }
           }).join("") + '</div>' +
           '<div class="needs"><span>Zadania:</span>' + s.tasks.map(function (t) {
             var ok = done.has(t[0] + "-" + t[1]);
-            return '<a class="tag l' + t[2] + (ok ? " ok" : "") + '" href="#' + cardId(t[0], t[1]) + '" data-back="m-' + s.k + '" title="Poziom ' + t[2] + (ok ? ", umiem" : "") + '">' + t[0] + ' · ' + t[1] + '</a>';
+            var old = t[3] ? " old" : "";
+            return '<a class="tag l' + t[2] + (ok ? " ok" : "") + old + '" href="#' + cardId(t[0], t[1]) + '" data-back="m-' + s.k + '" title="Poziom ' + t[2] + (ok ? ", umiem" : "") + (t[3] ? " – poza wymaganiami od 2025: " + t[3] : "") + '">' + t[0] + ' · ' + t[1] + '</a>';
           }).join("") + '</div></article>';
       });
       if (!isLast) {
