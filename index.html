@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-/* Layout: one narrow reading column; sticky tab bar; tasks are "paper sheets" with a tier tag. */
+/* Layout: one narrow reading column; sticky tab bar; tasks are "paper sheets" with a difficulty level (1-4). */
 :root {
   --bg: #f6f7f5;
   --surface: #ffffff;
@@ -71,6 +71,10 @@ code, .m { font-family: var(--mono); font-size: .92em; }
 .tag.B { color: var(--b); background: var(--b-bg); }
 .tag.C { color: var(--c); background: var(--c-bg); }
 .tag.X { color: var(--x); background: var(--x-bg); }
+.tag.l1 { color: var(--a); background: var(--a-bg); }
+.tag.l2 { color: var(--b); background: var(--b-bg); }
+.tag.l3 { color: var(--c); background: var(--c-bg); }
+.tag.l4 { color: var(--x); background: var(--x-bg); }
 
 .steps { padding-left: 1.3em; }
 .steps li { margin: 6px 0; }
@@ -167,29 +171,29 @@ h2, .basics section { scroll-margin-top: 80px; }
 
 <div id="view-start">
   <h1>Jak się uczyć z tej strony</h1>
-  <p class="lead">Tu są wszystkie zadania z prawdziwych matur CKE (maj 2023–2026), każde z oficjalnym rozwiązaniem i oznaczeniem, czy warto się go uczyć.</p>
+  <p class="lead">Tu są wszystkie zadania z prawdziwych matur CKE (maj 2023–2026), każde z oficjalnym rozwiązaniem i poziomem trudności od 1 do 4.</p>
   <ol class="steps">
     <li>Jeśli to Twój pierwszy raz – przeczytaj <a href="#egzamin">O egzaminie</a>: kiedy, co zabrać, jak oceniają.</li>
     <li>Przeczytaj <a href="#podstawy">podstawy</a> niżej. To krótkie przypomnienie zasad, bez których nie ruszysz zadań.</li>
-    <li>Wybierz rok (najlepiej zacznij od <a href="#rok-2026">2026</a> i <a href="#rok-2025">2025</a> – są najbardziej podobne do Twojej matury). Ustaw filtr na <span class="tag A">A</span>.</li>
+    <li>Wybierz rok (najlepiej zacznij od <a href="#rok-2026">2026</a> i <a href="#rok-2025">2025</a> – są najbardziej podobne do Twojej matury). Ustaw filtr na <span class="tag l1">1</span>, potem <span class="tag l2">2</span>.</li>
     <li>Rozwiąż zadanie na kartce. Dopiero potem kliknij <b>Pokaż rozwiązanie</b> i porównaj.</li>
     <li>Jeśli wyszło dobrze – zaznacz <b>Umiem</b>. Jeśli nie – wróć do tego typu za kilka dni.</li>
   </ol>
 
-  <h2>Poziomy zadań</h2>
-  <p>Każde zadanie ma znaczek. Mówi, jak bardzo opłaca się go uczyć. Wyliczone na podstawie tego, co CKE dawało co roku.</p>
+  <h2>Poziomy trudności</h2>
+  <p>Każde zadanie ma numer poziomu od 1 do 4. Mówi, ile pracy kosztuje i w jakiej kolejności się go uczyć. Punkty poniżej to średnio, ile dany poziom był wart w maturach 2023–2026.</p>
   <div class="tiers">
-    <div class="tier-row"><span class="tag A">A</span><div><b>Zawsze jest i jest krótkie.</b> Zadania zamknięte za 1 pkt: jedna reguła albo jeden wzór. Same zadania A to ok. <b>45% arkusza</b> – więcej niż próg zdania (30%). Ucz się ich najpierw.</div></div>
-    <div class="tier-row"><span class="tag B">B</span><div><b>Zawsze jest i ma stały przepis.</b> Zadania otwarte za 1–2 pkt, które co roku wyglądają tak samo: dowód podzielności, układ równań z treści, ciąg arytmetyczny, prawdopodobieństwo. A + B to ok. <b>60% arkusza</b>.</div></div>
-    <div class="tier-row"><span class="tag C">C</span><div><b>Często jest, trochę więcej myślenia.</b> Dłuższe zadania (funkcja kwadratowa, stereometria, nierówność kwadratowa) albo tematy, które bywają nie co roku. Rób je po opanowaniu A i B. Na trudnych otwartych celuj chociaż w 1. punkt.</div></div>
-    <div class="tier-row"><span class="tag X">Pomiń</span><div><b>Dużo pracy za mało punktów.</b> Otwarta optymalizacja, dowody geometryczne, twierdzenie cosinusów. Na egzaminie zapisz tylko pierwszy krok i idź dalej.</div></div>
+    <div class="tier-row"><span class="tag l1">1</span><div><b>Bardzo proste.</b> Jedna reguła albo jeden wzór, zwykle zadanie zamknięte za 1 pkt: potęgi, logarytm, odczytanie z wykresu, średnia, kąt w okręgu. Co roku <b>ok. 21 pkt (ok. 45% arkusza)</b> – więcej niż próg zdania (30%). Ucz się ich najpierw.</div></div>
+    <div class="tier-row"><span class="tag l2">2</span><div><b>Trochę trudniejsze – zadanie z przepisem.</b> Zawsze wygląda podobnie i rozwiązuje się je tymi samymi krokami: dowód podzielności, układ równań z treści, prawdopodobieństwo, nierówność kwadratowa, kombinatoryka. Wystarczy zapamiętać przepis. Poziomy 1 + 2 to <b>ok. 37–40 pkt (ok. 75–80% arkusza)</b>.</div></div>
+    <div class="tier-row"><span class="tag l3">3</span><div><b>Trudne, ale nadal z przepisem.</b> Przepis jest dłuższy (kilka etapów), ale nie wymaga pomysłu: wzór funkcji kwadratowej, otwarte zadanie z ciągów za 3 pkt, otwarta stereometria. Da się nauczyć na pamięć. Co roku ok. 3–9 pkt. Nawet bez końcowego wyniku pierwsze kroki dają punkty.</div></div>
+    <div class="tier-row"><span class="tag l4">4</span><div><b>Bardzo trudne – wymaga myślenia i pomysłu.</b> Optymalizacja z treści, dowody geometryczne. Co roku tylko ok. 2–4 pkt. Zostaw na sam koniec egzaminu: zapisz pierwszy krok (np. oznaczenia i wzór) i idź dalej.</div></div>
   </div>
 
   <h2>Na egzaminie: 3 przejścia</h2>
   <ol class="steps">
-    <li><b>~60 min – wszystkie zadania za (0–1).</b> Rozwiąż, co rozpoznajesz. Resztę zaznacz „na strzała” od razu i postaw kropkę na marginesie. Nigdy nie zostawiaj pustego zadania zamkniętego.</li>
-    <li><b>~60 min – zadania B.</b> Dowód, układ równań, ciąg, prawdopodobieństwo. Pisz cały przepis.</li>
-    <li><b>Reszta czasu – C.</b> Nierówność kwadratowa, potem pierwsze kroki w dłuższych. Na koniec wróć do kropek.</li>
+    <li><b>~60 min – wszystkie zadania za (0–1)</b> (głównie poziom 1). Rozwiąż, co rozpoznajesz. Resztę zaznacz „na strzała” od razu i postaw kropkę na marginesie. Nigdy nie zostawiaj pustego zadania zamkniętego.</li>
+    <li><b>~60 min – zadania z przepisem</b> (poziom 2): dowód, układ równań, prawdopodobieństwo, nierówność kwadratowa. Pisz cały przepis.</li>
+    <li><b>Reszta czasu – poziom 3</b>, potem pierwsze kroki w poziomie 4. Na koniec wróć do kropek.</li>
   </ol>
   <p class="ex">Kolejność zadań w arkuszu jest co roku taka sama: najpierw liczby (potęgi, logarytmy), potem równania, funkcje, ciągi, trygonometria, geometria, bryły, a na końcu kombinatoryka, prawdopodobieństwo i statystyka.</p>
 
@@ -544,12 +548,12 @@ h2, .basics section { scroll-margin-top: 80px; }
   <h1 id="year-title"></h1>
   <p class="lead" id="year-lead"></p>
   <div class="bar">
-    <div class="filters" id="filters" role="group" aria-label="Filtr poziomu">
+    <div class="filters" id="filters" role="group" aria-label="Filtr poziomu trudności">
       <button type="button" data-f="all" aria-pressed="true">Wszystkie</button>
-      <button type="button" data-f="A" aria-pressed="false">A</button>
-      <button type="button" data-f="B" aria-pressed="false">B</button>
-      <button type="button" data-f="C" aria-pressed="false">C</button>
-      <button type="button" data-f="X" aria-pressed="false">Pomiń</button>
+      <button type="button" data-f="1" aria-pressed="false">Poziom 1</button>
+      <button type="button" data-f="2" aria-pressed="false">2</button>
+      <button type="button" data-f="3" aria-pressed="false">3</button>
+      <button type="button" data-f="4" aria-pressed="false">4</button>
     </div>
     <div class="progress" id="progress"></div>
   </div>
@@ -561,13 +565,13 @@ h2, .basics section { scroll-margin-top: 80px; }
 <button type="button" class="btn back" id="back" hidden>← Wróć do zadania</button>
 
 <footer class="wrap" style="padding-block: 0 40px; color: var(--muted); font-size: .88rem;">
-  <p>Strona nieoficjalna, do nauki. Treści zadań, rozwiązania i zasady oceniania pochodzą z arkuszy Centralnej Komisji Egzaminacyjnej: <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/arkusze/" style="color: var(--accent);">cke.gov.pl</a>. Podział na poziomy A/B/C to własna analiza arkuszy z lat 2023–2026, nie stanowisko CKE.</p>
+  <p>Strona nieoficjalna, do nauki. Treści zadań, rozwiązania i zasady oceniania pochodzą z arkuszy Centralnej Komisji Egzaminacyjnej: <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/arkusze/" style="color: var(--accent);">cke.gov.pl</a>. Poziomy trudności 1–4 to własna analiza arkuszy z lat 2023–2026, nie stanowisko CKE.</p>
 </footer>
 
-<script src="data.js?v=4661d483c3"></script>
+<script src="data.js?v=21f8819a2c"></script>
 <script>
 (function () {
-  var TIER_NAME = { A: "A", B: "B", C: "C", X: "Pomiń" };
+  var LEVEL_HINT = { 1: "bardzo proste", 2: "przepis", 3: "dłuższy przepis", 4: "wymaga pomysłu" };
   var DATES = { 2026: "5 maja 2026", 2025: "6 maja 2025", 2024: "8 maja 2024", 2023: "8 maja 2023" };
   var MAX = { 2026: 50, 2025: 50, 2024: 46, 2023: 46 };
   var filter = "all";
@@ -577,6 +581,7 @@ h2, .basics section { scroll-margin-top: 80px; }
   function store(list) { try { localStorage.setItem("umiem", JSON.stringify(list)); } catch (e) {} }
   var done = new Set(load());
   try { filter = localStorage.getItem("filtr") || "all"; } catch (e) {}
+  if (!/^(all|[1-4])$/.test(filter)) filter = "all";  // old A/B/C filter values
 
   function plural(n) { return n === 1 ? "punkt" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? "punkty" : "punktów"; }
 
@@ -585,10 +590,10 @@ h2, .basics section { scroll-margin-top: 80px; }
     var el = document.createElement("article");
     el.id = "z-" + id.replace(".", "-");
     el.className = "task" + (done.has(id) ? " done" : "");
-    el.dataset.tier = t.tier;
+    el.dataset.lvl = String(t.lvl);
     el.innerHTML =
       '<div class="task-head">' +
-        '<span class="tag ' + t.tier + '">' + TIER_NAME[t.tier] + '</span>' +
+        '<span class="tag l' + t.lvl + '" title="Poziom ' + t.lvl + ': ' + LEVEL_HINT[t.lvl] + '">Poziom ' + t.lvl + '</span>' +
         '<span class="nr">Zadanie ' + t.nr + '</span>' +
         '<span class="pts">' + t.pkt + ' ' + plural(t.pkt) + '</span>' +
         '<span class="typ">' + t.typ + '</span>' +
@@ -622,7 +627,7 @@ h2, .basics section { scroll-margin-top: 80px; }
 
   function progress() {
     if (!year) return;
-    var list = window.TASKS.filter(function (t) { return t.y === year && (filter === "all" || t.tier === filter); });
+    var list = window.TASKS.filter(function (t) { return t.y === year && (filter === "all" || String(t.lvl) === filter); });
     var pts = list.reduce(function (s, t) { return s + t.pkt; }, 0);
     var got = list.filter(function (t) { return done.has(t.y + "-" + t.nr); }).reduce(function (s, t) { return s + t.pkt; }, 0);
     document.getElementById("progress").textContent = "Umiem: " + got + " z " + pts + " pkt";
@@ -630,17 +635,17 @@ h2, .basics section { scroll-margin-top: 80px; }
 
   function applyFilter() {
     document.querySelectorAll("#filters button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.f === filter)); });
-    document.querySelectorAll("#tasks .task").forEach(function (el) { el.hidden = !(filter === "all" || el.dataset.tier === filter); });
+    document.querySelectorAll("#tasks .task").forEach(function (el) { el.hidden = !(filter === "all" || el.dataset.lvl === filter); });
     progress();
   }
 
   function showYear(y) {
     year = y;
     var list = window.TASKS.filter(function (t) { return t.y === y; });
-    var byTier = { A: 0, B: 0, C: 0, X: 0 };
-    list.forEach(function (t) { byTier[t.tier] += t.pkt; });
+    var byLvl = { 1: 0, 2: 0, 3: 0, 4: 0 };
+    list.forEach(function (t) { byLvl[t.lvl] += t.pkt; });
     document.getElementById("year-title").textContent = "Matura " + y;
-    document.getElementById("year-lead").textContent = DATES[y] + " · " + MAX[y] + " pkt · A: " + byTier.A + " pkt, B: " + byTier.B + " pkt, C: " + byTier.C + " pkt, pomiń: " + byTier.X + " pkt";
+    document.getElementById("year-lead").textContent = DATES[y] + " · " + MAX[y] + " pkt · poziom 1: " + byLvl[1] + " pkt, 2: " + byLvl[2] + " pkt, 3: " + byLvl[3] + " pkt, 4: " + byLvl[4] + " pkt";
     var box = document.getElementById("tasks");
     box.textContent = "";
     list.forEach(function (t) { box.appendChild(card(t)); });
