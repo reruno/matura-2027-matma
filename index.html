@@ -441,7 +441,7 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
   <p>Strona nieoficjalna, do nauki. Treści zadań, rozwiązania i zasady oceniania pochodzą z arkuszy Centralnej Komisji Egzaminacyjnej: <a href="https://cke.gov.pl/egzamin-maturalny/egzamin-maturalny-w-formule-2023/arkusze/" style="color: var(--accent);">cke.gov.pl</a>. Podział na poziomy A/B/C to własna analiza arkuszy z lat 2023–2026, nie stanowisko CKE.</p>
 </footer>
 
-<script src="data.js"></script>
+<script src="data.js?v=4661d483c3"></script>
 <script>
 (function () {
   var TIER_NAME = { A: "A", B: "B", C: "C", X: "Pomiń" };
@@ -471,7 +471,7 @@ th { color: var(--muted); font-weight: 700; font-size: .85rem; }
         '<span class="typ">' + t.typ + '</span>' +
       '</div>' +
       '<div class="needs"><span>Potrzebne podstawy:</span>' +
-        t.p.map(function (p) { return '<a href="#' + p[0] + '" data-from="' + id + '">' + p[1] + '</a>'; }).join("") +
+        (t.p || []).map(function (p) { return '<a href="#' + p[0] + '" data-from="' + id + '">' + p[1] + '</a>'; }).join("") +
       '</div>' +
       '<div class="sheet"><img loading="lazy" alt="Treść zadania ' + t.nr + ' z matury ' + t.y + '" src="' + t.t + '"></div>' +
       '<div class="solution" hidden><div class="label">Rozwiązanie i zasady oceniania (CKE)</div><div class="sheet"><img alt="Rozwiązanie zadania ' + t.nr + '"></div></div>' +
